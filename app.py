@@ -1,20 +1,45 @@
 import streamlit as st
 
-st.set_page_config(page_title="Boom Crash Sniper", layout="wide")
-st.title("🎯 Boom & Crash Sniper - Fast Mode")
+st.set_page_config(page_title="Boom Crash Sniper", layout="centered")
 
-tab1, tab2 = st.tabs(["🔵 BOOM 1000", "🔴 CRASH 1000"])
+st.title("🎯 Boom & Crash Sniper")
+st.caption("Clean | Fast | No heavy charts")
 
-with tab1:
-    st.subheader("BOOM 1000 - Sell Spike")
-    st.metric("Signal", "WAIT 👀")
-    st.info("1. Spike happens (big red wick)\n2. Wait 2 ticks\n3. SELL\nSL = 2% above spike")
-    st.link_button("Open Boom Chart (Deriv)", "https://app.deriv.com/dtrader?market=boom_1000")
+tab_boom, tab_crash = st.tabs(["🔵 BOOM 1000", "🔴 CRASH 1000"])
 
-with tab2:
-    st.subheader("CRASH 1000 - Buy Spike")
-    st.metric("Signal", "WAIT 👀")
-    st.info("1. Spike happens (big green wick)\n2. Wait 2 ticks\n3. BUY\nSL = 2% below spike")
-    st.link_button("Open Crash Chart (Deriv)", "https://app.deriv.com/dtrader?market=crash_1000")
+# --- BOOM TAB ---
+with tab_boom:
+    st.subheader("Boom 1000")
+    st.markdown("**Strategy: SELL the spike**")
+    
+    col1, col2 = st.columns(2)
+    col1.metric("Status", "WAITING")
+    col2.metric("Next Action", "Wait for spike")
+    
+    st.divider()
+    st.write("**Rules:**")
+    st.write("1. Watch for big down spike")
+    st.write("2. Wait 2 ticks after spike")
+    st.write("3. Enter SELL")
+    st.write("4. SL: Top of spike | TP: 50% retrace")
+    
+    st.link_button("📈 Open Boom Chart", "https://app.deriv.com/")
 
-st.success("This version loads instantly. Use Deriv chart + this for signals.")
+# --- CRASH TAB ---
+with tab_crash:
+    st.subheader("Crash 1000")
+    st.markdown("**Strategy: BUY the spike**")
+    
+    col1, col2 = st.columns(2)
+    col1.metric("Status", "WAITING")
+    col2.metric("Next Action", "Wait for spike")
+    
+    st.divider()
+    st.write("**Rules:**")
+    st.write("1. Watch for big up spike")
+    st.write("2. Wait 2 ticks after spike")
+    st.write("3. Enter BUY")
+    st.write("4. SL: Bottom of spike | TP: 50% retrace")
+
+st.divider()
+st.success("✅ This version loads in 2 seconds")
